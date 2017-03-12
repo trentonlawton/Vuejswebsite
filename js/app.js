@@ -61,6 +61,8 @@ app.title = data[app.counter].title.rendered;
   loader();
   getData()
 
+// TODO: update to use sessionStorage that way there is only one initial payload from wp api
+// TODO: restructure function to rely on sessionStorage array
   function browse(){
   $('#prev').click(function(){
     if(app.counter != 0){
