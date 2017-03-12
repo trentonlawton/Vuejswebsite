@@ -37,7 +37,7 @@ function loader(){
 }
 
 function showGallery(){
-  $('.container').show();
+  $('.container').fadeIn(2000);
   $('.loader').remove();
 }
 
