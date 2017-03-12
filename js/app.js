@@ -32,6 +32,15 @@ function imageSize(windowSize){
   // TODO: if the page alsready has data in sesssion storage check that its upto date
   // TODO: if not then it should make another json request
   /*this function should grab scaled data based on current viewport */
+function loader(){
+  var hello = setTimeout(showGallery,2000)
+}
+
+function showGallery(){
+  $('.container').show();
+  $('.loader').remove();
+}
+
   function getData(){
 
     var screenSize = imageSize($(window).width());
@@ -49,6 +58,7 @@ app.title = data[app.counter].title.rendered;
       })
 
   }
+  loader();
   getData()
 
   function browse(){
