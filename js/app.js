@@ -27,15 +27,25 @@ function imageSize(windowSize){
     }
   }
 
+
+  // TODO: onload needs to grab json file and save it to session sessionStorage
+  // TODO: if the page alsready has data in sesssion storage check that its upto date
+  // TODO: if not then it should make another json request
   /*this function should grab scaled data based on current viewport */
   function getData(){
+
     var screenSize = imageSize($(window).width());
       $.getJSON("http://www.usernameisnull.com/data/wp-json/wp/v2/posts/?_embed",function(data){
 console.log(data[app.counter]);
 localStorage.setItem('test',data)
 app.imgSrc = data[app.counter]._embedded['wp:featuredmedia'][0].media_details.sizes[screenSize].source_url;
 app.title = data[app.counter].title.rendered;
+
+
+  var newdata = JSON.stringify(data)
   app.message =data[app.counter].content.rendered;
+  sessionStorage.setItem('data',newdata)
+      console.log(JSON.parse(sessionStorage.data))
       })
 
   }
@@ -52,6 +62,7 @@ app.title = data[app.counter].title.rendered;
     }
   })
   $('#next').click(function(){
+    if(app.counter)
     app.counter++;
     getData();
   })
