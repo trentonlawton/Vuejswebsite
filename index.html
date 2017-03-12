@@ -5,29 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Unis-55 starter</title>
     <link rel="stylesheet" href="/css/main.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   </head>
   <body>
-    <div class="loader">
+    <div class="loaderContainer">
 
+    <div class="loader">
+</div>
+<p>UNIS-55 MONOCHROME <small>&copy</small> </p>
     </div>
 <div class="container" id="app">
+  <div class="navContainer">
+    <nav>
+      <ul>
+        <li><button type="button" id="homeButton">Home</button></li>
+        <li><button type="button" id="aboutButton">About</button></li>
+      </ul>
+    </nav>
+  </div>
   <div id="gallery">
-    <img :src="imgSrc" >
+    <img :src="imgSrc">
     <h2 v-text="title"></h2>
 <div v-html="message"></div>
+</div>
+<div id="about">
+<div v-html="message">
+
+</div>
 </div>
 <div id="movement">
     <button id="prev"><</button>
   <button id="next">></button>
+</div>
+</div>
 
-</div>
-</div>
 <script
   src="https://code.jquery.com/jquery-3.1.1.js"
   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
   crossorigin="anonymous"></script>
 <script src="https://unpkg.com/vue@2.2.2" charset="utf-8"></script>
 <script src="js/app.js"></script>
-<footer><small>Copyright&copy; 2017 Trenton Lawton</small></footer>
+
+<footer>
+  <div class="socialLinks">
+    <a href ="https://twitch.tv/usernameisnull" target="_blank"><i class="fa fa-twitch" aria-hidden="true"></i></a>
+        <a href ="  https://www.instagram.com/usernameisnull" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+  </div>
+  <small>Copyright&copy; 2017 Trenton Lawton</small>
+</footer>
   </body>
 </html>
