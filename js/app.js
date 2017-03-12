@@ -62,6 +62,7 @@ function render() {
   app.message = data[app.counter].content.rendered;
 }
 loader();
+initialize()
 render()
 
 // TODO: update to use sessionStorage that way there is only one initial payload from wp api
