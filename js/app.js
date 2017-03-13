@@ -1,4 +1,4 @@
-
+console.log("NOTE THIS SITE IS NOT FINISHED IT IS OPEN FOR TESTING AND IS UNDERGOING DEVELOPMENT");
 var newArray = [];
 var app = new Vue({
   el: '#app',
@@ -44,26 +44,24 @@ function initialize() {
 }
 
 // NOTE: this function checks for storage and whether or not its up to date. If it is initialize will not occur
-function checkStorage(){
-  if (sessionStorage.data){
+function checkStorage() {
+  if (sessionStorage.data) {
     console.log('Data persists');
-      $.getJSON("http://www.usernameisnull.com/data/wp-json/wp/v2/posts/?_embed", function(data) {
-        if(JSON.stringify(data) == sessionStorage.data){
-          console.log(data);
-          console.log(JSON.parse(sessionStorage.data));
-          console.log('data is up to date');
-          render();
-        }
-        else{
-          console.log('Looks like you have old data lets update');
-          initialize();
-        }
-      })
-    }
-      else{
-        console.log('Looks like you have no data');
+    $.getJSON("http://www.usernameisnull.com/data/wp-json/wp/v2/posts/?_embed", function(data) {
+      if (JSON.stringify(data) == sessionStorage.data) {
+        console.log(data);
+        console.log(JSON.parse(sessionStorage.data));
+        console.log('data is up to date');
+        render();
+      } else {
+        console.log('Looks like you have old data lets update');
         initialize();
       }
+    })
+  } else {
+    console.log('Looks like you have no data');
+    initialize();
+  }
 
 }
 

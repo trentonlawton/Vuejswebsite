@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Unis-55 starter</title>
+    <title>Unis-55 V 0.5</title>
     <link rel="stylesheet" href="/css/main.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   </head>
@@ -12,7 +12,7 @@
 
     <div class="loader">
 </div>
-<p>UNIS-55 MONOCHROME <small>&copy</small> </p>
+<p>UNIS-55 MONOCHROME</p>
     </div>
 <div class="container" id="app">
   <div class="navContainer">
@@ -27,16 +27,17 @@
     <img :src="imgSrc">
     <h2 v-text="title"></h2>
 <div v-html="message"></div>
+<div id="movement">
+    <button id="prev"><</button>
+  <button id="next">></button>
+</div>
 </div>
 <div id="about">
 <div v-html="message">
 
 </div>
 </div>
-<div id="movement">
-    <button id="prev"><</button>
-  <button id="next">></button>
-</div>
+
 </div>
 
 <script
