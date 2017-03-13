@@ -39,18 +39,20 @@ function initialize() {
     var newdata = JSON.stringify(data)
     sessionStorage.setItem('data', newdata)
     console.log(JSON.parse(sessionStorage.data))
+    render();
   })
 }
 
 // NOTE: this function checks for storage and whether or not its up to date. If it is initialize will not occur
 function checkStorage(){
-  if (JSON.parse(sessionStorage.data).length>0){
+  if (sessionStorage.data){
     console.log('Data persists');
       $.getJSON("http://www.usernameisnull.com/data/wp-json/wp/v2/posts/?_embed", function(data) {
         if(JSON.stringify(data) == sessionStorage.data){
           console.log(data);
           console.log(JSON.parse(sessionStorage.data));
           console.log('data is up to date');
+          render();
         }
         else{
           console.log('Looks like you have old data lets update');
@@ -88,7 +90,6 @@ function render() {
 }
 loader();
 checkStorage();
-render()
 
 // TODO: update to use sessionStorage that way there is only one initial payload from wp api
 // TODO: restructure function to rely on sessionStorage array
