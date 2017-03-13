@@ -32,6 +32,7 @@ function imageSize(windowSize) {
 // TODO: if not then it should make another json request
 /*this function should grab scaled data based on current viewport */
 
+
 function initialize() {
 
   $.getJSON("http://www.usernameisnull.com/data/wp-json/wp/v2/posts/?_embed", function(data) {
@@ -40,6 +41,30 @@ function initialize() {
     console.log(JSON.parse(sessionStorage.data))
   })
 }
+
+// NOTE: this function checks for storage and whether or not its up to date. If it is initialize will not occur
+function checkStorage(){
+  if (JSON.parse(sessionStorage.data).length>0){
+    console.log('Data persists');
+      $.getJSON("http://www.usernameisnull.com/data/wp-json/wp/v2/posts/?_embed", function(data) {
+        if(JSON.stringify(data) == sessionStorage.data){
+          console.log(data);
+          console.log(JSON.parse(sessionStorage.data));
+          console.log('data is up to date');
+        }
+        else{
+          console.log('Looks like you have old data lets update');
+          initialize();
+        }
+      })
+    }
+      else{
+        console.log('Looks like you have no data');
+        initialize();
+      }
+
+}
+
 function loader() {
   var hello = setTimeout(showGallery, 2000)
 }
@@ -62,7 +87,7 @@ function render() {
   app.message = data[app.counter].content.rendered;
 }
 loader();
-initialize()
+checkStorage();
 render()
 
 // TODO: update to use sessionStorage that way there is only one initial payload from wp api
@@ -102,6 +127,7 @@ function navigation() {
   $('#homeButton').click(function() {
     $('#about').fadeOut(2000);
     setTimeout(() => {
+      checkStorage();
       render();
       $('#gallery').show()
       $('#movement').show();
