@@ -1,5 +1,7 @@
 console.log("NOTE THIS SITE IS NOT FINISHED IT IS OPEN FOR TESTING AND IS UNDERGOING DEVELOPMENT");
+
 $(document).on("pageinit", function() {
+  $('div.ui-loader').remove();
   var newArray = [];
   var app = new Vue({
     el: '#app',
@@ -40,6 +42,7 @@ $(document).on("pageinit", function() {
 
   // NOTE: this function checks for storage and whether or not its up to date. If it is initialize will not occur
   // TODO: cleanup
+  // TODO: when data is old and the dom is updated always render the latest image
   function checkStorage() {
     if (sessionStorage.data) {
       console.log('Data persists');
@@ -157,6 +160,6 @@ $(document).on("pageinit", function() {
   // TODO: Build out Design view
 
 
-  // TODO: gallery swipe for mobile
+
 
 })
