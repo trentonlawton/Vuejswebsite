@@ -9,7 +9,7 @@ var app = new Vue({
     title: 'hello'
   }
 })
-
+var screenSize = imageSize($(window).width())
 /*this function should return necessary image sizing based on viewport size */
 function imageSize(windowSize) {
   if (windowSize < 750) {
@@ -27,14 +27,8 @@ function imageSize(windowSize) {
 }
 
 
-// TODO: onload needs to grab json file and save it to session sessionStorage
-// TODO: if the page alsready has data in sesssion storage check that its upto date
-// TODO: if not then it should make another json request
-/*this function should grab scaled data based on current viewport */
-
-
+// TODO: do i need this function
 function initialize() {
-
   $.getJSON("http://www.usernameisnull.com/data/wp-json/wp/v2/posts/?_embed", function(data) {
     var newdata = JSON.stringify(data)
     sessionStorage.setItem('data', newdata)
@@ -44,6 +38,7 @@ function initialize() {
 }
 
 // NOTE: this function checks for storage and whether or not its up to date. If it is initialize will not occur
+// TODO: cleanup
 function checkStorage() {
   if (sessionStorage.data) {
     console.log('Data persists');
@@ -77,7 +72,7 @@ function showGallery() {
 // NOTE: This function renders appropriate assets based on glass size the idea is that we don't load full sized images when we're on our phones
 function render() {
   $('#about').hide();
-  var screenSize = imageSize($(window).width());
+
   var data = JSON.parse(sessionStorage.data)
   console.log(data[app.counter]);
   localStorage.setItem('test', data)
@@ -91,29 +86,51 @@ checkStorage();
 
 // TODO: update to use sessionStorage that way there is only one initial payload from wp api
 // TODO: restructure function to rely on sessionStorage array
-function browse() {
-  $('#prev').click(function() {
-    if (app.counter != 0) {
-      app.counter--;
-      render()
-    } else {
-      console.log('at the beginning');
-    }
-  })
-  $('#next').click(function() {
-    if (app.counter < JSON.parse(sessionStorage.data).length - 1) {
-      app.counter = app.counter + 1;
-      console.log(app.counter);
-      render();
-    } else {
-      console.log("Woah there cowboy theres no more images");
-    }
-  })
+function browse(viewPort) {
+  console.log(viewPort);
+  if (viewPort == 'large') {
+    $('#prev').click(function() {
+      if (app.counter != 0) {
+        app.counter--;
+        render()
+      } else {
+        console.log('at the beginning');
+      }
+    })
+    $('#next').click(function() {
+      if (app.counter < JSON.parse(sessionStorage.data).length - 1) {
+        app.counter = app.counter + 1;
+        console.log(app.counter);
+        render();
+      } else {
+        console.log("Woah there cowboy theres no more images");
+      }
+    })
+  } else {
+    $('#gallery').on("swipeleft", function() {
+      if (app.counter != 0) {
+        app.counter--;
+        render()
+      } else {
+        console.log('at the beginning');
+      }
+    })
+    $('#gallery').on("swiperight", function() {
+      if (app.counter < JSON.parse(sessionStorage.data).length - 1) {
+        app.counter = app.counter + 1;
+        console.log(app.counter);
+        render();
+      } else {
+        console.log("Woah there cowboy theres no more images");
+      }
+    })
+
+  }
 }
-
-
-browse()
+browse(screenSize)
+// NOTE: cleanup
 function navigation() {
+
   $('#aboutButton').click(function() {
     $('#gallery').fadeOut(2000);
     $('#movement').fadeOut(2000);
@@ -122,7 +139,6 @@ function navigation() {
       app.message = "<p>Trenton Lawton is a San Francisco based Designer,developer,and visual artist.Lo-fi fam salvia disrupt, typewriter fanny pack chia biodiesel twee artisan selvage edison bulb quinoa bushwick. Seitan beard paleo live-edge. Next level actually viral, tote bag pitchfork cray tousled DIY +1 lo-fi chartreuse neutra crucifix green juice narwhal. Fingerstache cronut keffiyeh beard whatever, dreamcatcher art party taxidermy meh organic. Sartorial sriracha literally unicorn. Etsy ramps green juice whatever, offal XOXO asymmetrical poke letterpress neutra four loko +1 glossier coloring book.Everyday carry swag iPhone affogato williamsburg celiac.</p><div class='logoContainer'><img src='assets/newlogo.png' class='logos'><img src='assets/skulllogo.png' class='logos'></div>"
     }, 2000);
   })
-
   $('#homeButton').click(function() {
     $('#about').fadeOut(2000);
     setTimeout(() => {
@@ -133,6 +149,10 @@ function navigation() {
     }, 2000);
   })
 }
-
-navigation();
+navigation(screenSize);
 console.log('hello');
+
+// TODO: Build out Design view
+
+
+// TODO: gallery swipe for mobile

@@ -25,12 +25,13 @@
   </div>
   <div id="gallery">
     <img :src="imgSrc">
+    <div id="movement">
+        <button id="prev" aria-label="previous" title="Previous">P</button>
+      <button id="next" aria-label="forward" title="Forward">F</button>
+    </div>
     <h2 v-text="title"></h2>
 <div v-html="message"></div>
-<div id="movement">
-    <button id="prev"><</button>
-  <button id="next">></button>
-</div>
+
 </div>
 <div id="about">
 <div v-html="message">
