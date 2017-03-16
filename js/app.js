@@ -110,7 +110,7 @@ $(document).on("pageinit", function() {
           console.log("Woah there cowboy theres no more images");
         }
       })
-    } else {
+    } 
       $('#gallery').on("swipeleft", function() {
         if (app.counter != 0) {
           app.counter--;
@@ -130,7 +130,7 @@ $(document).on("pageinit", function() {
         }
       })
 
-    }
+
   }
   browse(screenSize)
   // NOTE: cleanup
