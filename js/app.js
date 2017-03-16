@@ -1,5 +1,19 @@
 console.log("NOTE THIS SITE IS NOT FINISHED IT IS OPEN FOR TESTING AND IS UNDERGOING DEVELOPMENT");
 
+
+
+/*
+PRIORITY FIXES
+________________________________&*&&*(&_+_+_+_)
+
+*/
+// FIXME: Lets get rid of all of these globa variable
+// FIXME: Hello default should be hidden in favor of some type of logo while we wait for the api to parse
+// FIXME: IMPROVE PERFORMANCE
+// FIXME: FIX SAFARI BUGG will not work in safari
+
+
+
 $(document).on("pageinit", function() {
   $('div.ui-loader').remove();
   var newArray = [];
@@ -30,7 +44,7 @@ $(document).on("pageinit", function() {
   }
 
 
-  // TODO: do i need this function
+// FIXME: Does this has to be here since checkStorage does the same thing,but more inteligently?
   function initialize() {
     $.getJSON("http://www.usernameisnull.com/data/wp-json/wp/v2/posts/?_embed", function(data) {
       var newdata = JSON.stringify(data)
@@ -88,8 +102,8 @@ $(document).on("pageinit", function() {
   loader();
   checkStorage();
 
-  // TODO: update to use sessionStorage that way there is only one initial payload from wp api
-  // TODO: restructure function to rely on sessionStorage array
+// TODO: User needs feedback that they have reached the end of gallery
+// FIXME: This can be consolidated figure out how to clean this up
   function browse(viewPort) {
     console.log(viewPort);
     if (viewPort == 'large') {
@@ -110,13 +124,16 @@ $(document).on("pageinit", function() {
           console.log("Woah there cowboy theres no more images");
         }
       })
-    } 
+    }
       $('#gallery').on("swipeleft", function() {
         if (app.counter != 0) {
           app.counter--;
           console.log('swiped');
           render()
         } else {
+          // FIXME: this may be temporary investigate other solutions that may not require jqueryui
+          $('#galImage').effect("shake")
+          console.log("Woah there cowboy theres no more images");
           console.log('at the beginning');
         }
       })
@@ -126,6 +143,8 @@ $(document).on("pageinit", function() {
           console.log(app.counter);
           render();
         } else {
+          // FIXME: this may be temporary investigate other solutions that may not require jqueryui
+          $('#galImage').effect("shake")
           console.log("Woah there cowboy theres no more images");
         }
       })
