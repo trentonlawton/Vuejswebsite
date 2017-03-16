@@ -112,6 +112,7 @@ $(document).on("pageinit", function() {
           app.counter--;
           render()
         } else {
+          $('#galImage').effect("shake")
           console.log('at the beginning');
         }
       })
@@ -121,6 +122,7 @@ $(document).on("pageinit", function() {
           console.log(app.counter);
           render();
         } else {
+          $('#galImage').effect("shake")
           console.log("Woah there cowboy theres no more images");
         }
       })
