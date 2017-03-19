@@ -102,7 +102,8 @@ $(document).on("pageinit", function() {
   loader();
   checkStorage();
 
-// TODO: User needs feedback that they have reached the end of gallery
+// TODO: need animationns for swipe and forward and backwards
+// TODO: the experience is very static currently and should be much more dynamic
 // FIXME: This can be consolidated figure out how to clean this up
   function browse(viewPort) {
     console.log(viewPort);
@@ -140,6 +141,7 @@ $(document).on("pageinit", function() {
       $('#gallery').on("swiperight", function() {
         if (app.counter < JSON.parse(sessionStorage.data).length - 1) {
           app.counter = app.counter + 1;
+          $('#galImage').draggable();
           console.log(app.counter);
           render();
         } else {
@@ -158,12 +160,15 @@ $(document).on("pageinit", function() {
     $('#aboutButton').click(function() {
       $('#gallery').fadeOut(2000);
       $('#movement').fadeOut(2000);
+      $('#aboutButton').addClass('disabled')
       setTimeout(() => {
         $('#about').show()
         app.message = "<p>Trenton Lawton is a San Francisco based Designer,developer,and visual artist.Lo-fi fam salvia disrupt, typewriter fanny pack chia biodiesel twee artisan selvage edison bulb quinoa bushwick. Seitan beard paleo live-edge. Next level actually viral, tote bag pitchfork cray tousled DIY +1 lo-fi chartreuse neutra crucifix green juice narwhal. Fingerstache cronut keffiyeh beard whatever, dreamcatcher art party taxidermy meh organic. Sartorial sriracha literally unicorn. Etsy ramps green juice whatever, offal XOXO asymmetrical poke letterpress neutra four loko +1 glossier coloring book.Everyday carry swag iPhone affogato williamsburg celiac.</p><div class='logoContainer'><img src='assets/newlogo.png' class='logos'><img src='assets/skulllogo.png' class='logos'></div>"
       }, 2000);
     })
     $('#homeButton').click(function() {
+      $('#aboutButton').removeClass('disabled')
+      $('#homeButton').addClass('disabled')
       $('#about').fadeOut(2000);
       setTimeout(() => {
         checkStorage();
