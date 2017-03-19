@@ -44,7 +44,7 @@ $(document).on("pageinit", function() {
   }
 
 
-// FIXME: Does this has to be here since checkStorage does the same thing,but more inteligently?
+  // FIXME: Does this has to be here since checkStorage does the same thing,but more inteligently?
   function initialize() {
     $.getJSON("http://www.usernameisnull.com/data/wp-json/wp/v2/posts/?_embed", function(data) {
       var newdata = JSON.stringify(data)
@@ -102,6 +102,7 @@ $(document).on("pageinit", function() {
   loader();
   checkStorage();
 
+
 // TODO: need animationns for swipe and forward and backwards
 // TODO: the experience is very static currently and should be much more dynamic
 // FIXME: This can be consolidated figure out how to clean this up
@@ -113,50 +114,51 @@ $(document).on("pageinit", function() {
           app.counter--;
           render()
         } else {
+          $('#galImage').effect("shake")
           console.log('at the beginning');
         }
       })
       $('#next').click(function() {
         if (app.counter < JSON.parse(sessionStorage.data).length - 1) {
           app.counter = app.counter + 1;
-          console.log(app.counter);
-          render();
-        } else {
-          console.log("Woah there cowboy theres no more images");
-        }
-      })
-    }
-      $('#gallery').on("swipeleft", function() {
-        if (app.counter != 0) {
-          app.counter--;
-          console.log('swiped');
-          render()
-        } else {
-          // FIXME: this may be temporary investigate other solutions that may not require jqueryui
-          $('#galImage').effect("shake")
-          console.log("Woah there cowboy theres no more images");
-          console.log('at the beginning');
-        }
-      })
-      $('#gallery').on("swiperight", function() {
-        if (app.counter < JSON.parse(sessionStorage.data).length - 1) {
-          app.counter = app.counter + 1;
           $('#galImage').draggable();
           console.log(app.counter);
           render();
         } else {
-          // FIXME: this may be temporary investigate other solutions that may not require jqueryui
           $('#galImage').effect("shake")
           console.log("Woah there cowboy theres no more images");
         }
       })
+    }
+    $('#gallery').on("swipeleft", function() {
+      if (app.counter != 0) {
+        app.counter--;
+        console.log('swiped');
+        render()
+      } else {
+        // FIXME: this may be temporary investigate other solutions that may not require jqueryui
+        $('#galImage').effect("shake")
+        console.log("Woah there cowboy theres no more images");
+        console.log('at the beginning');
+      }
+    })
+    $('#gallery').on("swiperight", function() {
+      if (app.counter < JSON.parse(sessionStorage.data).length - 1) {
+        app.counter = app.counter + 1;
+        console.log(app.counter);
+        render();
+      } else {
+        // FIXME: this may be temporary investigate other solutions that may not require jqueryui
+        $('#galImage').effect("shake")
+        console.log("Woah there cowboy theres no more images");
+      }
+    })
 
 
   }
   browse(screenSize)
   // NOTE: cleanup
   function navigation() {
-
     $('#aboutButton').click(function() {
       $('#gallery').fadeOut(2000);
       $('#movement').fadeOut(2000);
