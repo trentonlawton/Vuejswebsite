@@ -12,7 +12,9 @@ ________________________________&*&&*(&_+_+_+_)
 // FIXME: IMPROVE PERFORMANCE
 // FIXME: FIX SAFARI BUGG will not work in safari
 
-
+// TODO: Incorporate a disrete music player
+// TODO: Accessibility sweep
+// TODO: Design three column layout
 
 $(document).on("pageinit", function() {
   $('div.ui-loader').remove();
@@ -102,7 +104,7 @@ $(document).on("pageinit", function() {
   loader();
   checkStorage();
 
-
+gi
 // TODO: need animationns for swipe and forward and backwards
 // TODO: the experience is very static currently and should be much more dynamic
 // FIXME: This can be consolidated figure out how to clean this up
